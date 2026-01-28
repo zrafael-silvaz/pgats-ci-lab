@@ -3,7 +3,7 @@
 name: 'Execução Manual'
 
 on:
-  scheduled:
+  schedule:
      - cron: '0 6 * * 1'
 
 #Tarefas dentro da pipe são jobs
