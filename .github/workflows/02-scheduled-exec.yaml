@@ -1,6 +1,6 @@
 #CI nivel - disparo agendado
 
-name: 'Execução Manual'
+name: 'Execução agendada'
 
 on:
   schedule:
