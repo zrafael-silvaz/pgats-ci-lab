@@ -1,10 +1,10 @@
-#CI nivel - disparo manual a apartir de um clique
+#CI nivel - disparo agendado
 
 name: 'Execução Manual'
 
 on:
   scheduled:
-    - cron: '0 6 * * 1'
+     - cron: '0 6 * * 1'
 
 #Tarefas dentro da pipe são jobs
 jobs:
