@@ -6,7 +6,7 @@ on:
   schedule:
      - cron: '0 6 * * 1'
 
-#Tarefas dentro da pipe são jobs
+#Tarefas dentro da pipe são jobs agendada
 jobs:
   e2e-tests:
 
