@@ -1,0 +1,37 @@
+#CI nivel - disparo manual a apartir de um clique
+
+name: 'Execução Manual'
+
+on:
+  workflow_dispatch:
+
+#Tarefas dentro da pipe são jobs
+jobs:
+  e2e-tests:
+
+  #maquina que a job vai executar  
+  runs-on: ubuntu-latest
+  steps:
+    #clone do projeto
+    - uses: actions/checkout@v6
+
+    #instalação do node
+    - uses: actions/setup-node@v6
+      with:
+        node-version: latest
+
+    #instalação do yarn
+    - name: Instalando o yarn
+      run: npm install -g yarn
+
+    #instalação dependencias
+    - name: Instalando dependencias
+      run: yarn
+
+    #Intalação playwright
+    - name: Instalando playwright
+      run: yarn playwright install
+
+    #Execuntando testes e2e
+    - name: Execuntando testes e2e
+      run: yarn run e2e
