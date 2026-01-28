@@ -9,8 +9,10 @@ on:
 jobs:
   e2e-tests:
 
-  #maquina que a job vai executar  
-  runs-on: ubuntu-latest
+  #maquina que a job vai executar
+  runs-on: ubuntu-22.04
+
+  #passos do script de build
   steps:
     #clone do projeto
     - uses: actions/checkout@v6
