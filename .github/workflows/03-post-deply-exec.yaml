@@ -1,12 +1,14 @@
-#CI nivel 02 - disparo agendado
+#CI nivel 03 - disparo após deploy
 
-name: 'Execução agendada'
+name: 'Execução por deploy'
 
 on:
-  schedule:
-     - cron: '0 6 * * 1'
+  workflow_run:
+    workflows: ['Execução Manual']
+    types:
+      - completed
 
-#Tarefas dentro da pipe são jobs agendada
+#Tarefas dentro da pipe são jobs
 jobs:
   e2e-tests:
 
