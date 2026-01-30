@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     #condicional - if
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     #passos do script de build
     steps:
