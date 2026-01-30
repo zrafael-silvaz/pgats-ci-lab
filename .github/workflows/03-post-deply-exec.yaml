@@ -15,6 +15,9 @@ jobs:
     #maquina que a job vai executar
     runs-on: ubuntu-22.04
 
+    #condicional - if
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     #passos do script de build
     steps:
       #clone do projeto
