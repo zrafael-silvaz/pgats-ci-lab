@@ -44,6 +44,7 @@ jobs:
       - name: Execuntando testes e2e
         run: yarn run e2e
 
+      #Publicação dos relatorios 
       - uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
         with:

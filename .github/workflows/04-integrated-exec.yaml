@@ -1,0 +1,92 @@
+#CI nivel 04 - disparo dos testes dentro do pipe de dev
+
+name: 'Execução integrada com em dev'
+
+on:
+  workflow_dispatch:
+
+#Tarefas dentro da pipe são jobs
+jobs:
+  inspecao:
+    runs-on: ubuntu-22.04
+
+    steps:
+      #temos no package.json um script que faz a impeçao do código, o lint
+      #clone do projeto
+      - uses: actions/checkout@v6
+
+      #instalação do yarn
+      - name: Instalando o yarn
+        run: npm install -g yarn
+
+      #instalação dependencias
+      - name: Instalando dependencias
+        run: yarn
+
+      - name: Checando padrnização do código
+        run: yarn lint
+
+  unidade:
+    runs-on: ubuntu-22.04
+    steps:
+      #temos no package.json um script que faz a impeçao do código, o lint
+      #clone do projeto
+      - uses: actions/checkout@v6
+
+      #instalação do yarn
+      - name: Instalando o yarn
+        run: npm install -g yarn
+
+      #instalação dependencias
+      - name: Instalando dependencias
+        run: yarn
+
+      - name: executando testes de unidade
+        run: yarn test
+
+  e2e-tests:
+
+    #maquina que a job vai executar
+    runs-on: ubuntu-22.04
+
+    #condicional - if
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    #passos do script de build
+    steps:
+      #clone do projeto
+      - uses: actions/checkout@v6
+
+      #instalação do node
+      - uses: actions/setup-node@v6
+        with:
+          node-version: latest
+
+      #instalação do yarn
+      - name: Instalando o yarn
+        run: npm install -g yarn
+
+      #instalação dependencias
+      - name: Instalando dependencias
+        run: yarn
+
+      #Intalação playwright
+      - name: Instalando playwright
+        run: yarn playwright install
+
+      #Execuntando testes e2e
+      - name: Execuntando testes e2e
+        run: yarn run e2e
+
+      - uses: actions/upload-artifact@v6
+        if: ${{ !cancelled() }}
+        with:
+          name: relatorio 
+          path: ./playwright-report
+
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Simulacao deploy
+        run: echo "Simulacao deploy"
