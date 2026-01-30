@@ -49,7 +49,7 @@ jobs:
   e2e-tests:
     #maquina que a job vai executar
     runs-on: ubuntu-22.04
-    needs: [unidade]
+    needs: [inspecao]
 
     #condicional - if
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
