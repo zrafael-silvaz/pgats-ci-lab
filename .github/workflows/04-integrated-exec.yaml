@@ -28,6 +28,8 @@ jobs:
 
   unidade:
     runs-on: ubuntu-22.04
+    #definindo ordem na pipe
+    needs: [inspecao]
     steps:
       #temos no package.json um script que faz a impeçao do código, o lint
       #clone do projeto
@@ -47,6 +49,7 @@ jobs:
   e2e-tests:
     #maquina que a job vai executar
     runs-on: ubuntu-22.04
+    needs: [unidade]
 
     #condicional - if
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -85,6 +88,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-22.04
+    needs: [e2e-tests]
 
     steps:
       - name: Simulacao deploy
