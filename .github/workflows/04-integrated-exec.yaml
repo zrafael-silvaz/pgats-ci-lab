@@ -23,7 +23,7 @@ jobs:
       - name: Instalando dependencias
         run: yarn
 
-      - name: Checando padrnização do código
+      - name: Checando padronização do código
         run: yarn lint
 
   unidade:
@@ -45,7 +45,6 @@ jobs:
         run: yarn test
 
   e2e-tests:
-
     #maquina que a job vai executar
     runs-on: ubuntu-22.04
 
@@ -81,7 +80,7 @@ jobs:
       - uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
         with:
-          name: relatorio 
+          name: relatorio
           path: ./playwright-report
 
   deploy:

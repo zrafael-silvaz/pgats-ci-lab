@@ -4,12 +4,11 @@ name: 'Execução agendada'
 
 on:
   schedule:
-     - cron: '0 6 * * 1'
+    - cron: '0 6 * * 1'
 
 #Tarefas dentro da pipe são jobs agendada
 jobs:
   e2e-tests:
-
     #maquina que a job vai executar
     runs-on: ubuntu-22.04
 
@@ -42,5 +41,5 @@ jobs:
       - uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
         with:
-          name: relatorio 
+          name: relatorio
           path: ./playwright-report
